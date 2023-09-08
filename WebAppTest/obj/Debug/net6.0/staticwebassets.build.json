@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QFdsOu5ErKL2NuUiesG47TiIlQY7Z0uwtgXXdqV+W7c=",
+  "Hash": "xtXc/1+7i5U4PgV6z6C6WNqZlnxH8GVWDGkcgCe0d7o=",
   "Source": "WebAppTest",
   "BasePath": "_content/WebAppTest",
   "Mode": "Default",
@@ -1443,6 +1443,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\Banners\\[256609041541337470]Toys-HG-Infinite-Justice-Gundam-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\terng\\source\\repos\\WebAppTest\\WebAppTest\\wwwroot\\Uploads\\Banners\\[256609071051547313]TaskForce_One.jpg",
+      "SourceId": "WebAppTest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\terng\\source\\repos\\WebAppTest\\WebAppTest\\wwwroot\\",
+      "BasePath": "_content/WebAppTest",
+      "RelativePath": "Uploads/Banners/[256609071051547313]TaskForce_One.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Banners\\[256609071051547313]TaskForce_One.jpg"
     },
     {
       "Identity": "C:\\Users\\terng\\source\\repos\\WebAppTest\\WebAppTest\\wwwroot\\Uploads\\Pictures\\[256609040928120302]1364406-Freedom-GundamZGMF-X10A-Freedom-Gundam.jpg",

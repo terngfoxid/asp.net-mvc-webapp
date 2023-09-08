@@ -296,7 +296,7 @@ namespace WebAppTest.Models
         }
 
         //-------Banner-------
-        public async Task<string> InsertNewBanner(Banner banner) {
+        public async Task<string> InsertNewBanner(BannerCreate banner) {
 
             if (isImage(banner.Image)) {
                 string res;
@@ -419,9 +419,68 @@ namespace WebAppTest.Models
             return banner;
         }
 
-        public async Task<Boolean> UpdateBanner(int? id, Banner banner)
+        public async Task<BannerEdit> GetBannerEdit(int? id)
+        {
+            if (id == null) return null;
+            SqlCommand com = new SqlCommand("GetSingleBanner", con);
+            com.CommandType = CommandType.StoredProcedure;
+
+            com.Parameters.AddWithValue("@idBanner", id);
+            BannerEdit banner = new BannerEdit();
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                reader.Read();
+                banner.ID = (int)reader["idBanner"];
+                banner.Title = (string)reader["Title"];
+                banner.Description = (string)reader["Description"];
+                banner.Path = (string)reader["Path"];
+
+                List<SubPicture> list = new List<SubPicture>();
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    SubPicture buffer = new SubPicture();
+                    buffer.ID = (int)reader["idSubpicture"];
+                    buffer.Path = (string)reader["Path"];
+                    list.Add(buffer);
+                }
+                banner.SubPictures = list.ToArray();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return banner;
+        }
+
+        public async Task<Boolean> UpdateBanner(int? id, BannerEdit banner)
         {
             if (id == null) return false;
+            if (banner.Image == null) {
+                try
+                {
+                    SqlCommand com = new SqlCommand("Update banner set Title = '" + banner.Title + "' , Description = '" + banner.Description + "' where idBanner = " + id, con);
+                    con.Open();
+                    com.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
             if (isImage(banner.Image))
             {
                 string newFileName = "[" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + "]" + banner.Image.FileName;

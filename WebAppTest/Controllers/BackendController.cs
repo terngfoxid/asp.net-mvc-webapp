@@ -75,7 +75,7 @@ namespace WebAppTest.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> BannerCreateAsync(Banner banner)
+        public async Task<ActionResult> BannerCreateAsync(BannerCreate banner)
         {
             if (HttpContext.Session.GetString("UserName") != null)
             {
@@ -104,6 +104,7 @@ namespace WebAppTest.Controllers
                     }
                     else
                     {
+
                         //if (Image == null || Image.Length == 0) TempData["BannerCreate"] = "Please input upload file";
                         return View(banner);
                     }
@@ -130,7 +131,7 @@ namespace WebAppTest.Controllers
                     else
                     {
                         db dbop = new db();
-                        Banner banner = await dbop.GetBanner(id);
+                        BannerEdit banner = await dbop.GetBannerEdit(id);
                         TempData["BannerManagerID"] = id;
                         if (banner == null) return NotFound();
                         return View(banner);
@@ -146,7 +147,7 @@ namespace WebAppTest.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> BannerEditAsync(int id, Banner banner)
+        public async Task<ActionResult> BannerEditAsync(int id, BannerEdit banner)
         {
             if (HttpContext.Session.GetString("UserName") != null)
             {
@@ -177,7 +178,7 @@ namespace WebAppTest.Controllers
                         else
                         {
                             db dbop = new db();
-                            banner = await dbop.GetBanner(id);
+                            banner = await dbop.GetBannerEdit(id);
                             return View(banner);
                         }
                         /*db dbop = new db();
